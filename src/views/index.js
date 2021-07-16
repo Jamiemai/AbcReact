@@ -4,3 +4,4 @@ export { default as SignupSimple } from './SignupSimple';
 // export { default as AboutUs } from './AboutUs';
 export { default as SigninForm } from './SigninForm';
 export { default as UserInfo } from './UserInfo';
+export { default as Dashboard } from './Dashboard';
