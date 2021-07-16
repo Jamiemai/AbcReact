@@ -1,10 +1,9 @@
 {
-  "name": "thefront-free",
-  "author": "maccarian agency",
-  "email": "hi@maccarianagency.com",
+  "name": "Abc",
+  "author": "jamie",
+  "email": "Abc",
   "version": "1.0.0",
   "private": false,
-  "license": "MIT",
   "scripts": {
     "prettier": "prettier --write '**/*.{js,css,html}'",
     "start": "react-scripts start",
