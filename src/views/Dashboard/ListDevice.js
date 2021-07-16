@@ -11,6 +11,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
 // import Title from './Title';
 
 // Generate Order Data
@@ -37,7 +47,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListDevice() {
+const [openAdd, setOpenAdd] = React.useState(false);
+const [openEdit, setOpenEdit] = React.useState(false);
+
+const handleClickOpen = () => {
+    setOpenAdd(true);
+   // setOpenEdit(true);
+};
+
+const handleClickOpenEdit = () => {
+    setOpenEdit(true);
+};
+
+const handleClose = () => {
+    setOpenAdd(false);
+    setOpenEdit(false);
+};
+
+// const handleChange = (event) => {
+//     const name = event.target.name;
+//     setState({
+//       ...state,
+//       [name]: event.target.value,
+//     });
+//   };
+
   const classes = useStyles();
+
   return (
     <React.Fragment>
       {/* <Title>Recent Orders</Title> */}
@@ -60,10 +96,10 @@ export default function ListDevice() {
               {/* <TableCell>{row.paymentMethod}</TableCell> */}
               <TableCell align="right">
                 <IconButton aria-label="add">
-                    <AddIcon />
+                    <AddIcon onClick={handleClickOpen} />
                 </IconButton>
                 <IconButton aria-label="edit">
-                    <EditIcon />
+                    <EditIcon  onClick={handleClickOpenEdit}/>
                 </IconButton>
                 <IconButton aria-label="delete">
                     <DeleteIcon />
@@ -74,11 +110,103 @@ export default function ListDevice() {
           ))}
         </TableBody>
       </Table>
-      {/* <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div> */}
+
+
+      <Dialog open={openAdd} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle >Add</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="MAC address"
+            type="email"
+            fullWidth
+          />
+            <InputLabel shrink htmlFor="age-native-label-placeholder">
+            Name
+            </InputLabel>
+            <NativeSelect
+            // value={state.age}
+            // onChange={handleChange}
+            // inputProps={{
+            //     name: 'age',
+            //     id: 'age-native-label-placeholder',
+            // }}
+            >
+            <option value="">None</option>
+            <option value={10}>Name 1</option>
+            <option value={20}>Name 2</option>
+            <option value={30}>Name 3</option>
+            </NativeSelect>
+
+            <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Tags"
+            type="tags"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={openEdit} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle >Edit</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="MAC address"
+            type="email"
+            fullWidth
+            disabled
+          />
+            <InputLabel shrink htmlFor="age-native-label-placeholder">
+            Name
+            </InputLabel>
+            <NativeSelect
+            // value={state.age}
+            // onChange={handleChange}
+            // inputProps={{
+            //     name: 'age',
+            //     id: 'age-native-label-placeholder',
+            // }}
+            >
+            <option value="">None</option>
+            <option value={10}>Name 1</option>
+            <option value={20}>Name 2</option>
+            <option value={30}>Name 3</option>
+            </NativeSelect>
+
+            <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Tags"
+            type="tags"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </React.Fragment>
   );
 }
