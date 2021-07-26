@@ -24,6 +24,10 @@ import Zoom from '@material-ui/core/Zoom';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 import ListDevice from './ListDevice';
+import { useEffect,useState } from 'react';
+import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { UntitledModel, Device } from "../models";
+import { Auth,Storage  } from 'aws-amplify';
 
 
 const drawerWidth = 240;
@@ -107,7 +111,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export async function addDevice(){
+  await DataStore.save(
+    new Device({
+      "Mac_address": "ahos",
+      "name":"anb",
+      "tags":"new"
+    })
+  )
+
+}
+
+export async function getUser(){
+  await DataStore.save(
+    new Device({
+      "Mac_address": "ahos",
+      "name":"anb",
+      "tags":"new"
+    })
+  )
+
+}
+
+
 export default function Dashboard() {
+
+  const [devices, setDevice] = useState([])
+  
+  // const[listItems,setItems] = useState([])
+  // useEffect(() => {
+  //   const listData = await DataStore.query(ShoppingListItems)
+  //   _setItems(listData)
+
+  //   DataStore.observe(Device).subscribe(()=> {
+  //     fetchData()
+  //   })
+  // })
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -116,11 +156,18 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-//   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+// y
 
   return (
     <div className={classes.root}>
+      
       <CssBaseline />
+      {/* <button onClick ={createDevice}>Create Device</button>
+        {devices.map( device => <div key={device.id}>
+        <h5>{device.Mac_address}</h5>
+        <h5>{device.name}</h5>
+        <h5>{device.tags}</h5>
+        </div> )} */}
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton

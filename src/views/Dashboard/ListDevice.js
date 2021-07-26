@@ -22,19 +22,23 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputLabel from '@material-ui/core/InputLabel';
 // import Title from './Title';
+import { useEffect,useState } from 'react';
 
 // Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
+function createData(id, date, name, tags) {
+  return { id, date, name, tags };
 }
 
+
+
 const rows = [
-  createData(0, '2C:54:91:88:C9:E39', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-  createData(1, '2c-54-91-88-c9-e3', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-  createData(2, '00:00:00:a1:2b:cc', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(3, '06:54:66:d1:b4:c4', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-  createData(4, '76:04:96:g1:b8:a4', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
+  createData(0, '2C:54:91:88:C9:E39', 'Elvis Presley', 'Tupelo, MS'),
+  createData(1, '2c-54-91-88-c9-e3', 'Paul McCartney', 'London, UK'),
+  createData(2, '00:00:00:a1:2b:cc', 'Tom Scholz', 'Boston, MA'),
+  createData(3, '06:54:66:d1:b4:c4', 'Michael Jackson', 'Gary, IN'),
+  createData(4, '76:04:96:g1:b8:a4', 'Bruce Springsteen', 'Long Branch, NJ'),
 ];
+
 
 function preventDefault(event) {
   event.preventDefault();
@@ -49,6 +53,21 @@ const useStyles = makeStyles((theme) => ({
 export default function ListDevice() {
 const [openAdd, setOpenAdd] = React.useState(false);
 const [openEdit, setOpenEdit] = React.useState(false);
+
+
+// const [value, setValue] = useState("");
+
+// const handleAdd = e => {
+//   e.preventDefault();
+//   value && addTask(value)
+//   setValue("");
+// };
+
+// const removeTask = index => {
+//   const newTasks = [...tasks];
+//   newTasks.splice(index, 1);
+//   setTasks(newTasks);
+// };
 
 const handleClickOpen = () => {
     setOpenAdd(true);
@@ -92,7 +111,7 @@ const handleClose = () => {
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
+              <TableCell>{row.tags}</TableCell>
               {/* <TableCell>{row.paymentMethod}</TableCell> */}
               <TableCell align="right">
                 <IconButton aria-label="add">
