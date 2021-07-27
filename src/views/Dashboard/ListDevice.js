@@ -54,20 +54,18 @@ export default function ListDevice() {
 const [openAdd, setOpenAdd] = React.useState(false);
 const [openEdit, setOpenEdit] = React.useState(false);
 
+const [state, setState] = React.useState({
+  macAddress: "",
+  lastName: ""
+})
 
-// const [value, setValue] = useState("");
-
-// const handleAdd = e => {
-//   e.preventDefault();
-//   value && addTask(value)
-//   setValue("");
-// };
-
-// const removeTask = index => {
-//   const newTasks = [...tasks];
-//   newTasks.splice(index, 1);
-//   setTasks(newTasks);
-// };
+function handleChange(evt) {
+  const value = evt.target.value;
+  setState({
+    ...state,
+    [evt.target.name]: value
+  });
+}
 
 const handleClickOpen = () => {
     setOpenAdd(true);
@@ -152,6 +150,8 @@ const handleClose = () => {
             //     name: 'age',
             //     id: 'age-native-label-placeholder',
             // }}
+            value={state.macAddress}
+           
             >
             <option value="">None</option>
             <option value={10}>Name 1</option>
@@ -172,7 +172,7 @@ const handleClose = () => {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleChange} color="primary">
             Save
           </Button>
         </DialogActions>
@@ -200,8 +200,9 @@ const handleClose = () => {
             //     name: 'age',
             //     id: 'age-native-label-placeholder',
             // }}
+            
             >
-            <option value="">None</option>
+            <option value="">Name</option>
             <option value={10}>Name 1</option>
             <option value={20}>Name 2</option>
             <option value={30}>Name 3</option>
